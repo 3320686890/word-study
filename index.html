@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070310">
+<title>NEON 词境 · 四六级背单词 | 小挽</title>
+<meta name="description" content="赛博二次元风格的四六级背单词网页：四级 4544 词 / 六级 2118 词，遮释义、四选一、拼写、发音、打卡、错题本。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ 背景 ============ -->
+<div class="bg" aria-hidden="true">
+  <div class="bg-art" id="bgArt"></div>
+  <div class="bg-tint"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-scan"></div>
+  <div class="bg-petals" id="petals"></div>
+</div>
+
+<!-- ============ 0. 轻触开门 ============ -->
+<section id="gate" aria-label="进入词境">
+  <div class="gate-stage">
+    <div class="gate-aura"></div>
+
+    <!-- 漂浮英文 -->
+    <div class="float-letters" id="floatLetters" aria-hidden="true"></div>
+
+    <div class="gate-frame">
+      <div class="gate-light"></div>
+      <div class="gate-doors">
+        <div class="door door-l"></div>
+        <div class="door door-r"></div>
+      </div>
+
+      <div class="gate-ui">
+        <div class="gate-brand">WORD ACCESS TERMINAL // v2.0</div>
+        <h1 class="gate-title">NEON 词境</h1>
+        <p class="gate-sub">四六级词汇 · 霓虹记忆终端</p>
+
+        <button class="tap-core" id="tapCore" aria-label="点击开门，进入词境">
+          <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+          <span class="tap-disc">TAP</span>
+        </button>
+
+        <div class="tap-hint">轻触光环 / 按 <b>任意键</b> 开门</div>
+        <div class="gate-copy">TOUCH THE RING TO OPEN THE GATE</div>
+      </div>
+
+      <div class="gate-flash"></div>
+    </div>
+  </div>
+  <div class="gate-note">本页面由 <b>小挽</b> 制作 · 给 <b>CFOOOO</b></div>
+</section>
+
+<!-- ============ 应用 ============ -->
+<div id="app" class="hidden">
+
+  <!-- ---------- 首页 ---------- -->
+  <div class="view" id="view-home">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="logo">
+          <span class="logo-mark">词</span>
+          <span>NEON 词境<small>NEON VOCAB SYSTEM</small></span>
+        </div>
+        <div class="topbar-right">
+          <div class="xp-pill" id="xpPill" title="经验值 / 等级">Lv.<b id="lvNum">1</b> · XP <b id="xpNum">0</b></div>
+          <button class="btn btn-icon btn-ghost" id="btnStats" title="学习统计" aria-label="学习统计">📊</button>
+          <button class="btn btn-icon btn-ghost" id="btnSettings" title="设置" aria-label="设置">⚙️</button>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-txt">
+          <span class="badge cyan">◈ ONLINE · 记忆链路已连接</span>
+          <h1>在霓虹里，把每个<em>单词</em>都点亮成记忆</h1>
+          <p>四级 4544 词 · 六级 2118 词。先遮住释义自己回想，再用四选一 / 拼写检验，答对一次就点亮一格。</p>
+          <div class="hero-tags">
+            <span class="badge pink">遮释义回想</span>
+            <span class="badge">四选一</span>
+            <span class="badge">拼写模式</span>
+            <span class="badge cyan">TTS 发音</span>
+            <span class="badge lime">每日打卡</span>
+          </div>
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="btnContinue">继续冒险 →</button>
+            <button class="btn btn-ghost" id="btnRandom">🎲 随机抽词</button>
+          </div>
+        </div>
+        <div class="hero-char" aria-hidden="true">
+          <img src="assets/char-elysia.webp" alt="">
+          <div class="scanline"></div>
+          <div class="char-name">爱莉希雅</div>
+          <div class="char-tag">SYSTEM GUIDE // 向导</div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <h2>选择词境</h2>
+        <span>SELECT DATASET</span>
+      </div>
+
+      <div class="level-grid">
+        <!-- 四级 -->
+        <div class="level-card" data-level="cet4" role="button" tabindex="0">
+          <img class="lv-art" src="assets/char-pink.webp" alt="">
+          <div class="lv-inner">
+            <div class="lv-code">LV.04 · CET-4</div>
+            <div class="lv-name">四级词汇<small>College English Test · Band 4</small></div>
+            <p class="lv-desc">基础段 · 覆盖四六级考试高频词，先从这里建立语感。</p>
+            <div class="lv-stats">
+              <div class="ring-mini" data-ring="cet4"><i>0%</i></div>
+              <div class="lv-meta">
+                <div>共 <b data-total="cet4">—</b> 词 · 已掌握 <b data-mastered="cet4">0</b></div>
+                <div>今日已学 <b data-today="cet4">0</b> 词</div>
+              </div>
+            </div>
+            <div class="mode-row">
+              <span class="mode-chip" data-mode="choice" aria-pressed="true">四选一</span>
+              <span class="mode-chip" data-mode="reveal" aria-pressed="false">遮释义</span>
+              <span class="mode-chip" data-mode="spell" aria-pressed="false">拼写</span>
+            </div>
+            <div class="lv-enter" style="margin-top:14px">进入词境 ↳</div>
+          </div>
+        </div>
+
+        <!-- 六级 -->
+        <div class="level-card" data-level="cet6" role="button" tabindex="0">
+          <img class="lv-art" src="assets/char-yae.webp" alt="">
+          <div class="lv-inner">
+            <div class="lv-code">LV.06 · CET-6</div>
+            <div class="lv-name">六级词汇<small>College English Test · Band 6</small></div>
+            <p class="lv-desc">进阶段 · 已剔除与四级重复的 1873 词，专攻六级独有词汇。</p>
+            <div class="lv-stats">
+              <div class="ring-mini" data-ring="cet6"><i>0%</i></div>
+              <div class="lv-meta">
+                <div>共 <b data-total="cet6">—</b> 词 · 已掌握 <b data-mastered="cet6">0</b></div>
+                <div>今日已学 <b data-today="cet6">0</b> 词</div>
+              </div>
+            </div>
+            <div class="mode-row">
+              <span class="mode-chip" data-mode="choice" aria-pressed="true">四选一</span>
+              <span class="mode-chip" data-mode="reveal" aria-pressed="false">遮释义</span>
+              <span class="mode-chip" data-mode="spell" aria-pressed="false">拼写</span>
+            </div>
+            <div class="lv-enter" style="margin-top:14px">进入词境 ↳</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash">
+        <!-- 今日目标 -->
+        <div class="card glass">
+          <h3><span class="dot"></span>今日目标</h3>
+          <p class="sub">DAILY MISSION</p>
+          <div class="ring-big" id="goalRing">
+            <div class="ring-txt"><b id="goalPct">0%</b><span>COMPLETED</span></div>
+          </div>
+          <div class="goal-line"><span>今日已学</span><span><b id="goalDone">0</b> / <b id="goalTarget">20</b> 词</span></div>
+          <div class="goal-bar"><i id="goalBar"></i></div>
+          <div class="quick-stats">
+            <div class="qs"><b id="qsMastered">0</b><span>已掌握</span></div>
+            <div class="qs"><b id="qsAccuracy">—</b><span>正确率</span></div>
+          </div>
+        </div>
+
+        <!-- 打卡 -->
+        <div class="card glass">
+          <h3><span class="dot" style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></span>每日打卡</h3>
+          <p class="sub">STREAK TRACKER</p>
+          <div class="streak-big"><b id="streakNum">0</b><span>天连续打卡</span></div>
+          <div class="heat" id="heat" aria-label="最近 12 周打卡热力图"></div>
+          <div class="heat-legend">
+            <span>少</span><i style="background:rgba(255,255,255,.07)"></i><i style="background:rgba(22,224,255,.35)"></i>
+            <i style="background:rgba(139,92,255,.65)"></i><i style="background:var(--cyan)"></i>
+            <i style="background:linear-gradient(135deg,var(--pink),var(--cyan))"></i><span>多</span>
+          </div>
+          <button class="btn btn-sm btn-ghost" id="btnCheckin" style="margin-top:12px;width:100%">今日打卡</button>
+        </div>
+
+        <!-- 快捷 -->
+        <div class="card glass">
+          <h3><span class="dot" style="background:var(--lime);box-shadow:0 0 10px var(--lime)"></span>快捷通道</h3>
+          <p class="sub">QUICK ACCESS</p>
+          <div style="display:grid;gap:8px">
+            <button class="btn btn-sm" id="btnReviewDue">🔁 复习待复习词 <span class="badge" id="dueCount">0</span></button>
+            <button class="btn btn-sm" id="btnMistakes">🧾 错题本 <span class="badge pink" id="mistakeCount">0</span></button>
+            <button class="btn btn-sm" id="btnRandom2">🎲 随机抽 20 词</button>
+          </div>
+          <div class="quick-stats">
+            <div class="qs"><b id="qsTotal">0</b><span>累计学习</span></div>
+            <div class="qs"><b id="qsDays">0</b><span>学习天数</span></div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="sign">本页面由 <b>小挽</b> 制作 <span class="heart">♥</span> 给 <b>CFOOOO</b></div>
+        <div>词库来源：KyleBing/english-vocabulary（四级 / 六级）· 二次元立绘与背景来自本机素材</div>
+        <div class="credits">NEON VOCAB SYSTEM · DATA SAVED LOCALLY IN YOUR BROWSER</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ---------- 学习 ---------- -->
+  <div class="view hidden" id="view-learn">
+    <div class="wrap">
+      <div class="learn-hud">
+        <div class="hud-row">
+          <button class="hud-back" id="btnBack">← 返回</button>
+          <div class="hud-tools">
+            <div class="hud-score">
+              <span class="ok" id="hudOk">✓ 0</span>
+              <span class="no" id="hudNo">✗ 0</span>
+            </div>
+            <button class="btn btn-icon btn-ghost" id="btnSpeakAll" title="朗读单词 (S)" aria-label="朗读单词">🔊</button>
+            <button class="btn btn-icon btn-ghost" id="btnHelp" title="快捷键说明 (?)" aria-label="快捷键说明">?</button>
+          </div>
+        </div>
+        <div class="hud-progress">
+          <div class="hp-top"><span id="hudLevel">CET-4</span><span id="hudCount">0 / 0</span></div>
+          <div class="hp-bar"><i id="hudBar"></i></div>
+        </div>
+      </div>
+
+      <div class="word-stage" id="wordStage">
+        <div class="word-card glass">
+          <div class="wc-top">
+            <span class="wc-level" id="wcLevel">CET-4 · WORD 01</span>
+            <span class="wc-mastery" id="wcMastery" title="掌握度"></span>
+          </div>
+          <div class="word" id="wordText">word</div>
+          <div class="word-tools">
+            <button class="speak-btn" id="btnSpeak" title="朗读 (S)" aria-label="朗读单词">🔊</button>
+            <span id="wordHint">轻触喇叭收听发音 · 按空格揭示释义</span>
+          </div>
+
+          <div class="reveal-wrap">
+            <div class="meaning locked" id="meaning">
+              <div class="defs" id="defs"></div>
+            </div>
+            <div class="lock-badge" id="lockBadge">点击 / 空格 揭示释义</div>
+          </div>
+
+          <div class="phrase-box" id="phraseBox"></div>
+        </div>
+
+        <!-- 四选一 -->
+        <div id="choiceBlock">
+          <div class="options" id="options"></div>
+          <div class="kbd-hint" id="kbdHint">
+            <span><b>空格</b> 揭示释义</span><span><b>1-4</b> 选答案</span><span><b>Enter</b> 下一题</span><span><b>S</b> 发音</span>
+          </div>
+        </div>
+
+        <!-- 拼写 -->
+        <div id="spellBlock" class="hidden">
+          <div class="spell-box">
+            <input class="spell-input" id="spellInput" autocomplete="off" autocapitalize="off"
+                   spellcheck="false" placeholder="输入英文单词后回车">
+            <div class="spell-hint">提示：首字母 <b id="spellFirst">?</b> · 长度 <b id="spellLen">?</b> · 不确定就按 S 听发音</div>
+          </div>
+        </div>
+
+        <!-- 反馈 -->
+        <div class="feedback" id="feedback">
+          <div class="fb-head" id="fbHead">正确！</div>
+          <div class="fb-body" id="fbBody"></div>
+          <div class="fb-actions">
+            <button class="btn btn-sm btn-primary" id="btnNext">下一题 → <span class="badge" style="background:rgba(0,0,0,.18);border-color:transparent;color:inherit">Enter</span></button>
+            <button class="btn btn-sm" id="btnStar">☆ 加入错题本</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- 会话总结 ---------- -->
+  <div class="view hidden" id="view-summary">
+    <div class="wrap">
+      <div class="summary glass">
+        <div class="big-ico" id="sumIco">🎉</div>
+        <h2 id="sumTitle">本节完成！</h2>
+        <p id="sumDesc">继续保持，霓虹会越来越亮。</p>
+        <div class="sum-grid">
+          <div class="sum-cell"><b id="sumTotal">0</b><span>本组词数</span></div>
+          <div class="sum-cell"><b id="sumOk">0</b><span>答对</span></div>
+          <div class="sum-cell"><b id="sumAcc">0%</b><span>正确率</span></div>
+          <div class="sum-cell"><b id="sumXp">+0</b><span>获得 XP</span></div>
+        </div>
+        <div class="sum-actions">
+          <button class="btn btn-primary" id="btnAgain">再来一组 →</button>
+          <button class="btn" id="btnSumMistakes">去看错题 🧾</button>
+          <button class="btn btn-ghost" id="btnSumHome">回到首页</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- 错题本 ---------- -->
+  <div class="view hidden" id="view-mistakes">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="badge pink">MISTAKE BOOK</span>
+        <h1>错题本</h1>
+        <p>答错或手动加入的词会留在这里。选对 2 次后自动移出，也可以随时手动删除。</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+        <button class="btn btn-primary" id="btnReviewMistakes">🔁 复习全部错题</button>
+        <button class="btn" id="btnClearMistakes">🗑 清空错题本</button>
+      </div>
+      <div class="mistake-list" id="mistakeList"></div>
+      <div class="empty-state hidden" id="mistakesEmpty">
+        <div class="ico">🌙</div>
+        <div>错题本还是空的，去词境里练几组吧</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- 我的 ---------- -->
+  <div class="view hidden" id="view-profile">
+    <div class="wrap">
+      <div class="page-head">
+        <span class="badge cyan">PROFILE</span>
+        <h1>我的词境</h1>
+        <p>所有数据只保存在这台电脑的浏览器里，可以随时导出备份。</p>
+      </div>
+
+      <div class="profile-grid">
+        <div class="card glass">
+          <h3><span class="dot"></span>总览</h3>
+          <p class="sub">OVERVIEW</p>
+          <div class="stat-grid">
+            <div class="stat-box"><b id="pfTotal">0</b><span>累计学习词次</span></div>
+            <div class="stat-box"><b id="pfMastered">0</b><span>已掌握单词</span></div>
+            <div class="stat-box"><b id="pfAcc">—</b><span>总正确率</span></div>
+            <div class="stat-box"><b id="pfStreak">0</b><span>连续打卡</span></div>
+            <div class="stat-box"><b id="pfBest">0</b><span>最长连续</span></div>
+            <div class="stat-box"><b id="pfDays">0</b><span>学习天数</span></div>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3><span class="dot" style="background:var(--cyan)"></span>本月打卡</h3>
+          <p class="sub">CALENDAR</p>
+          <div class="calendar" id="calendar"></div>
+        </div>
+      </div>
+
+      <div class="card glass" style="margin-top:16px">
+        <h3><span class="dot" style="background:var(--violet)"></span>设置</h3>
+        <p class="sub">SETTINGS</p>
+        <div class="setting-row">
+          <div><span class="lbl">合成音效</span><span class="hint">答题 / 升级 / 开门的音效（Web Audio 实时合成）</span></div>
+          <button class="switch" id="swSound" role="switch" aria-checked="true" aria-label="音效开关"></button>
+        </div>
+        <div class="setting-row">
+          <div><span class="lbl">单词发音</span><span class="hint">点喇叭或按 S 朗读（浏览器 TTS）</span></div>
+          <button class="switch" id="swTts" role="switch" aria-checked="true" aria-label="发音开关"></button>
+        </div>
+        <div class="setting-row">
+          <div><span class="lbl">每日目标词数</span><span class="hint">影响首页进度环和 XP</span></div>
+          <input class="num-inp" id="goalInput" type="number" min="5" max="200" step="5" value="20">
+        </div>
+        <div class="setting-row">
+          <div><span class="lbl">错误时自动再练</span><span class="hint">答错的词在本组末尾再出现一次</span></div>
+          <button class="switch" id="swRepeat" role="switch" aria-checked="true" aria-label="答错重练"></button>
+        </div>
+        <div class="setting-row">
+          <div><span class="lbl">数据备份</span><span class="hint">导出 / 导入 / 清空本机进度</span></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-sm" id="btnExport">导出</button>
+            <button class="btn btn-sm" id="btnImport">导入</button>
+            <button class="btn btn-sm" id="btnReset" style="border-color:rgba(255,77,109,.5);color:#ff9aab">清空</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="sign">本页面由 <b>小挽</b> 制作 <span class="heart">♥</span> 给 <b>CFOOOO</b></div>
+        <div class="credits">NEON VOCAB SYSTEM · LOCAL STORAGE ONLY</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- 底部导航 -->
+  <nav class="tabbar" id="tabbar" aria-label="主导航">
+    <button class="tab" data-tab="home" aria-current="true"><span class="tab-ico">🏠</span><span class="tab-txt">首页</span></button>
+    <button class="tab" data-tab="learn"><span class="tab-ico">✨</span><span class="tab-txt">学词</span></button>
+    <button class="tab" data-tab="mistakes"><span class="tab-ico">🧾</span><span class="tab-txt">错题</span></button>
+    <button class="tab" data-tab="profile"><span class="tab-ico">👤</span><span class="tab-txt">我的</span></button>
+  </nav>
+</div>
+
+<!-- ============ 通用弹窗 ============ -->
+<div class="modal hidden" id="modal">
+  <div class="modal-card glass">
+    <div class="modal-head">
+      <h3 id="modalTitle">标题</h3>
+      <button class="close" id="modalClose" aria-label="关闭">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div id="toasts" aria-live="polite"></div>
+
+<!-- 加载提示（words.js 体量较大时） -->
+<div class="boot-note" id="bootNote">正在载入词库…</div>
+
+<script src="words.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

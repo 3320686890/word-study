@@ -1,0 +1,27 @@
+# ---- 系统 / 编辑器垃圾 ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*~
+*.swp
+
+# ---- 本地开发文件（不需要上传）----
+_data/
+build_assets.py
+编程入门手册.html
+编程入门手册-说明.md
+入门(1).md
+tire.py
+ArenaStudent-Windows/
+ArenaStudent-Windows.zip
+围棋算法计分解析*
+
+# ---- 临时截图 / 测试 ----
+_shot*.png
+_nm_*.png
+_nm_*.jpg
+_epad*/
+_edgeprofile*/
+_tmp_*.html
+_test*.js
